@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% block body %}
+    <div class="container my-4" >
+      {% for message in messages %}
+     
+      <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        {{message}}
+      </div>
+      {% endfor %}
+        <h2>Register Here :</h2>
+        <form method="POST" action="/register">
+            {% csrf_token %}
+            <div class="mb-3 my-4">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
+            </div>
+     
+            <button type="submit" class="btn btn-primary">Register</button>
+          </form>
+          <br>
+          <a href="/login">
+          <p>already have a account Login here</p>
+        </a>
+    </div>
+
+{% endblock %}

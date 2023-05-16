@@ -1,0 +1,72 @@
+{% extends 'base/base.html' %}
+
+
+
+
+{% block body %}
+
+
+<div class="container my-4">
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-success alert-dismissible">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    {{message}}
+  </div>
+  {% endfor %}
+  {% endif %}
+  <h2>Mail-Donkey :</h2>
+  <br>
+  <form action="/bulk-mail" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <label for="formFile" class="form-label">Select <strong> (xlsx,xls,csv) </strong> file <b> * </b></label>
+      <input class="form-control" type="file" id="formFile" name="myfile" onchange="checkfile(this);" required multiple />
+    </div>
+
+
+
+    <div class="mb-2">
+      <label for="exampleFormControlInput1" class="form-label">Subject</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Subject" name="subject">
+    </div>
+
+
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Email Body</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="mailbody"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="formFile" class="form-label">Select attachment</label>
+      <input class="form-control" type="file" id="formFile" name="attach" multiple>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Send Mail</button>
+  </form>
+</div>
+
+<script type="text/javascript" language="javascript">
+  function checkfile(sender) {
+
+      var validExts = new Array(".xlsx", ".xls",".csv");
+      var fileExt = sender.value;
+      fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+      if (validExts.indexOf(fileExt) < 0) {
+        alert("Invalid file selected, valid files are of " +
+                 validExts.toString() + " types.");
+                 document.getElementById('formFile').value = ''
+        return false;
+      }
+      else return true;
+  }
+  </script>
+  
+ {% endblock %}
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+{% block body %}
+    <div class="container my-4" >
+      {% for message in messages %}
+      {% if "login-error" in message.tags %}
+      <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        {{message}}
+      </div>
+      {% elif "register" in message.tags %}
+      <div class="alert alert-success alert-dismissible">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        {{message}}
+      </div>
+      {% else %}
+      <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        {{message}}
+      </div>
+      {% endif %}
+      {% endfor %}
+        <h2>Login Here :</h2>
+        <form method="POST" action="/login">
+            {% csrf_token %}
+            <div class="mb-3 my-4">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
+            </div>
+     
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+          <br>
+          <a href="/register">
+          <p>don't have a account Register here</p>
+        </a>
+    </div>
+
+{% endblock %}

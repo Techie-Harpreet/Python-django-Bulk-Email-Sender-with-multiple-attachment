@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+{% block body %}
+
+    <div class="container my-4">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            {{message}}
+          </div>
+        {% endfor %}
+    {% endif %} 
+    
+        <h2>Mail-Donkey :</h2>
+        <br>
+       <form action="/single-mail" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+  
+
+        <div class="mb-2">
+        <label for="exampleFormControlInput1" class="form-label">Email address  <b> * </b></label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="email" required>
+      </div>
+
+      <div class="mb-2">
+        <label for="exampleFormControlInput1" class="form-label">Subject</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Subject" name="subject">
+      </div>
+
+
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Email Body</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="mailbody"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Select attachment</label>
+        <input class="form-control" type="file" id="formFile" name="attach" multiple>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Send Mail</button>
+    </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+{% block body %}
+
+
+
+
+<div class="container my-4">
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">Mail-Donkey</h1>
+      <p class="col-md-8 fs-4">Welcome to Mail-Donkey in this webpage you can send bulk email with <b> multiple attachment</b>.just you can upload any <b> xlsx file or csv file make sure your file first column name is Emails column </b> and after that hit send mail buttons.</p>
+      <a href="{% url 'Single_mail_send' %}">
+      <button class="btn btn-success btn-lg" type="button">Send Single Mail</button>
+      </a>
+      <a href="{% url 'Bulk_mail_send' %}">
+      <button class="btn btn-success btn-lg" type="button">Send Bulk Mail</button>
+    </a>
+
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
